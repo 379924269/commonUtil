@@ -7,7 +7,7 @@ http://www.cnblogs.com/mingforyou/p/4568521.html
 https://github.com/Jaspersoft/jasperreports/blob/6.4.1.x/jasperreports/demo/samples
 
 ## 问题：
-* 1、生成pdf的时候报错：这个jar包要手动加进去，我找了几个库都没看到这个文件，itext-asian-5.1.1.jar这个jar永不起，感觉类容是一样的。
+* 1、生成pdf的时候报错：这个jar包要手动加进去，我找了几个库都没看到这个文件，itext-asian-5.1.1.jar这个jar用不起，感觉类容是一样的。
 <br>net.sf.jasperreports.engine.JRRuntimeException: Could not load the following font :
 <br>pdfFontName : STSong-Light
 <br>pdfEncoding : UniGB-UCS2-H
