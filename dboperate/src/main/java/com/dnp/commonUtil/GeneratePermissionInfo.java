@@ -15,6 +15,32 @@ import java.util.List;
 public class GeneratePermissionInfo {
 
     /**
+     * Description: 生成DB权限插入sql
+     *
+     * @param dbName                    : 服务数据库名称
+     * @param PermissionAutoIncrementId : 权限表当前的自增id, 最小从10开始，10以前的是留给服务的
+     * @param serviceId                 : 服务id，相当于总权限,我留了10个服务，可以是1-10， 根据权限表来看
+     */
+    public void genDbPermissionInserSql(String dbName, int PermissionAutoIncrementId, int serviceId) throws Exception {
+        for (Permission per : generatePermissionInfo(dbName, PermissionAutoIncrementId, serviceId)) {
+            getInsertSql(per);
+        }
+    }
+
+    /**
+     * Description: 生成单个表权限插入sql
+     *
+     * @param tableName                 : 表名称
+     * @param PermissionAutoIncrementId : 权限表当前的自增id, 最小从10开始，10以前的是留给服务的
+     * @param serviceId                 : 服务id，相当于总权限,我留了10个服务，可以是1-10， 根据权限表来看
+     */
+    public void genTablePermissionInserSql(String tableName, int PermissionAutoIncrementId, int serviceId) throws Exception {
+        for (Permission per : generateTablePermissionInfo(tableName, PermissionAutoIncrementId, serviceId)) {
+            getInsertSql(per);
+        }
+    }
+
+    /**
      * Description:
      *
      * @param autoIncrementId : 表当前的自增id, 最小从10开始，10以前的是留给服务的
@@ -22,8 +48,18 @@ public class GeneratePermissionInfo {
      * @return : java.util.List<com.dnp.commonUtil.Permission>
      * @
      */
-    List<Permission> GeneratePermissionInfo(String dbName, int autoIncrementId, int serviceId) throws Exception {
+    private List<Permission> generatePermissionInfo(String dbName, int autoIncrementId, int serviceId) throws Exception {
         List<String> allTableName = AutoDocumentEntity.getAllTableName(dbName);
+        return getPermissions(autoIncrementId, serviceId, allTableName);
+    }
+
+    private List<Permission> generateTablePermissionInfo(String tableName, int autoIncrementId, int serviceId) throws Exception {
+        List<String> allTableName = new ArrayList<>();
+        allTableName.add(tableName);
+        return getPermissions(autoIncrementId, serviceId, allTableName);
+    }
+
+    private List<Permission> getPermissions(int autoIncrementId, int serviceId, List<String> allTableName) {
         List<Permission> permissionList = new ArrayList<>();
 //        自增id
         int id = autoIncrementId;
@@ -80,33 +116,21 @@ public class GeneratePermissionInfo {
         return permissionList;
     }
 
-    /**
-     * Description: 生成权限插入sql
-     *
-     * @param dbName                    : 服务数据库名称
-     * @param PermissionAutoIncrementId : 权限表当前的自增id, 最小从10开始，10以前的是留给服务的
-     * @param serviceId                 : 服务id，相当于总权限,我留了10个服务，可以是1-10， 根据权限表来看
-     * @return : java.util.List<com.dnp.commonUtil.Permission>
-     */
-    public void genPermissionInserSql(String dbName, int PermissionAutoIncrementId, int serviceId) throws Exception {
-        for (Permission per : GeneratePermissionInfo(dbName, PermissionAutoIncrementId, serviceId)) {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("INSERT INTO `resource`(`id`, `name`, `url`, `pid`,`create_time`, `method`) VALUES (");
-            stringBuilder.append(per.getId());
-            stringBuilder.append(",");
-            stringBuilder.append("'" + per.getName() + "'");
-            stringBuilder.append(",");
-            stringBuilder.append("'" + per.getUrl() + "'");
-            stringBuilder.append(",");
-            stringBuilder.append(per.getPid());
-            stringBuilder.append(",");
-            stringBuilder.append(per.getCurrentTime());
-            stringBuilder.append(",");
-            stringBuilder.append("'" + per.getMethod() + "'");
-            stringBuilder.append(");");
-            System.out.println(stringBuilder.toString());
-        }
+    private void getInsertSql(Permission per) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("INSERT INTO `resource`(`id`, `name`, `url`, `pid`,`create_time`, `method`) VALUES (");
+        stringBuilder.append(per.getId());
+        stringBuilder.append(",");
+        stringBuilder.append("'").append(per.getName()).append("'");
+        stringBuilder.append(",");
+        stringBuilder.append("'").append(per.getUrl()).append("'");
+        stringBuilder.append(",");
+        stringBuilder.append(per.getPid());
+        stringBuilder.append(",");
+        stringBuilder.append(per.getCurrentTime());
+        stringBuilder.append(",");
+        stringBuilder.append("'").append(per.getMethod()).append("'");
+        stringBuilder.append(");");
+        System.out.println(stringBuilder.toString());
     }
-
-
 }
