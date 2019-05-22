@@ -1,0 +1,2 @@
+#生成权限管理插入sql
+运行：GeneratePermissionInfoTest.GenerateInsert

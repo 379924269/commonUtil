@@ -78,7 +78,7 @@ public class ExportToLocalUitl {
 	 * 导出word
 	 * 
 	 * @param jasperPrint
-	 * @param pathname
+	 * @param savePathname
 	 * @throws JRException 
 	 */
 	public static void exportWord(JasperPrint jasperPrint, String savePathname) throws JRException {

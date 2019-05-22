@@ -7,5 +7,6 @@
   <packaging>pom</packaging>
   <modules>
     <module>export-xls-doc-pdf</module>
+      <module>dboperate</module>
   </modules>
 </project>
