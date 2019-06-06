@@ -13,18 +13,6 @@ public class Permission implements Serializable {
     private String method;
     private long currentTime;
 
-    @Override
-    public String toString() {
-        return "Permission{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", url='" + url + '\'' +
-                ", pid=" + pid +
-                ", method='" + method + '\'' +
-                ", currentTime=" + currentTime +
-                '}';
-    }
-
     public int getId() {
         return id;
     }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.huazai.modular.dao.CalllogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.cn.huazai.modular.entity.Calllog">
+        <id column="id" property="id"/>
+        <result column="guid" property="guid"/>
+        <result column="fromuser" property="fromuser"/>
+        <result column="touser" property="touser"/>
+        <result column="starttime" property="starttime"/>
+        <result column="endtime" property="endtime"/>
+    </resultMap>
+
+</mapper>

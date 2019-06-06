@@ -9,11 +9,11 @@ public class GeneratePermissionInfoTest {
 
     @Test
     public void GenerateDBInsert() throws Exception {
-       new GeneratePermissionInfo().genDbPermissionInserSql("ms-pay",280, 3);
+       new GeneratePermissionInfo().genDbPermissionInserSql("ms_ptt",10, 1, "new-ptt");
     }
 
     @Test
     public void GenerateTableInsert() throws Exception {
-        new GeneratePermissionInfo().genTablePermissionInserSql("zuulRoute",290, 1);
+        new GeneratePermissionInfo().genTablePermissionInserSql("zuulRoute",290, 1, "ptt");
     }
 }

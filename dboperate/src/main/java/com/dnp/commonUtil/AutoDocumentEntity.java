@@ -9,7 +9,7 @@ import java.util.*;
 /**
  * 读取mysql某数据库下表的注释信息
  *
- * @author xxx
+ * @author 华仔
  */
 public class AutoDocumentEntity {
     public static Connection getMySQLConnection(String dbName) throws Exception {
