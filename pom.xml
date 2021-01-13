@@ -10,5 +10,6 @@
         <module>export-xls-doc-pdf</module>
         <module>dboperate</module>
         <module>tree-node-data-generate</module>
+        <module>poi_test</module>
     </modules>
 </project>
